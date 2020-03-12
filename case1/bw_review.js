@@ -37,6 +37,30 @@
 
 
   
+window.onload = init;
+
+// step 5 dfines the event listeners used in the page
+function init(){
+   // 5a, declares all stars classes
+   var stars = document.getElementsByClassName("span#stars img");
+   // 5b, loops the star collection for each star image
+   for(var i = 0; i < stars.length; i++){
+      stars[i].style.cursor = "pointer";
+      stars[i].addEventListener("mouseenter", lightStars);
+      
+   }
+   // 5c, event listener that runs the updateCount()
+   document.getElementById("commentField").addEventListener("keyup", updateCount);
+}
+
+function lightStars(){
+   var startNumber  = e.target.alt;
+   var stars = document.querySelectorAll("span#stars img");
+   for(var i = 0; i < startNumber; i++){
+      stars[i].src = 
+   }
+}
+
 
 
   
