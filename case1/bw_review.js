@@ -39,7 +39,7 @@
   
 window.onload = init;
 
-// step 5 dfines the event listeners used in the page
+// step 5 defines the event listeners used in the page
 function init(){
    // 5a, declares all stars classes
    var stars = document.getElementsByClassName("span#stars img");
@@ -53,15 +53,33 @@ function init(){
    document.getElementById("commentField").addEventListener("keyup", updateCount);
 }
 
+// step 6 colors a star when the user moves the mouse pointer over a star image
 function lightStars(){
-   var startNumber  = e.target.alt;
+   //6a stores the value of the alt attribute 
+   var starNumber  = e.target.alt;
+   // 6b, declares the stars variables
    var stars = document.querySelectorAll("span#stars img");
-   for(var i = 0; i < startNumber; i++){
-      stars[i].src = 
+   // 6c, lights every star in the collection
+   for(var i = 0; i < starNumber.length; i++){
+      stars[i].src = "bw_stars2.png";
    }
+   // 6d, unligths ever star in the collectio n
+   for(var i = startNumber; i < 5; i++){
+      stars[i].src = "bw_stars.png";
+   }
+   // 6e, changes the value input box
+   document.getElementById("rating").value = starNumber + "stars";
+   // 6f, when mouse pointer moves off the imagethe lit stars will be unlit
+   e.target.addEventListener("mouseleave", turnOffStars);
+   // 6g, runsd anonymous function removing turnOffStars function
+   e.target.addEventListener("",
+      function(){
+         
+      }
+   )
 }
 
-
+// 
 
   
   
