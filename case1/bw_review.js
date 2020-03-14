@@ -42,10 +42,11 @@ window.onload = init;
 // step 5 defines the event listeners used in the page
 function init(){
    // 5a, declares all stars classes
-   var stars = document.getElementsByClassName("span#stars img");
+   var stars = document.querySelectorAll("span#stars img");
    // 5b, loops the star collection for each star image
    for(var i = 0; i < stars.length; i++){
       stars[i].style.cursor = "pointer";
+
       stars[i].addEventListener("mouseenter", lightStars);
       
    }
@@ -54,33 +55,54 @@ function init(){
 }
 
 // step 6 colors a star when the user moves the mouse pointer over a star image
-function lightStars(){
+function lightStars(e){
    //6a stores the value of the alt attribute 
    var starNumber  = e.target.alt;
    // 6b, declares the stars variables
    var stars = document.querySelectorAll("span#stars img");
    // 6c, lights every star in the collection
-   for(var i = 0; i < starNumber.length; i++){
-      stars[i].src = "bw_stars2.png";
+   for(var i = 0; i < stars.length; i++){
+      stars[i].src = "bw_star2.png";
    }
    // 6d, unligths ever star in the collectio n
-   for(var i = startNumber; i < 5; i++){
-      stars[i].src = "bw_stars.png";
+   for(var i = starNumber; i < 5; i++){
+      stars[i].src = "bw_star.png";
    }
    // 6e, changes the value input box
-   document.getElementById("rating").value = starNumber + "stars";
+   document.getElementById("rating").value = starNumber + " stars";
    // 6f, when mouse pointer moves off the imagethe lit stars will be unlit
    e.target.addEventListener("mouseleave", turnOffStars);
    // 6g, runsd anonymous function removing turnOffStars function
-   e.target.addEventListener("",
+   e.target.addEventListener("click",
       function(){
-         
+         e.target.removeEventListener("mouseleave", turnOffStars)
       }
    )
 }
 
-// 
+// step 7, unlights the stars when the user moves the mouse off the stars
+function turnOffStars(){
+   var stars = document.getElementsByClassName("span#stars img");
+   for(var i = 0; i < stars.length; i++){
+      stars[i].src = "bw_stars.png";
+   }
+   document.getElementById("rating").value = "";
+}
 
+function updateCount(){
+   var commentText = document.getElementById("comment").value;
+   var charCount = countCharacters(commentText);
+   var wordCountBox = document.getElementById("wordCount");
+   wordCountBox.value = charCount + "/1000";
+   //this is too many words
+   if(charCount > 1000){
+      wordCountBox.style.backgroundColor = "red";
+      wordCountBox.style.color = "white";
+   }else{
+      wordCountBox.style.backgroundColor = "white";
+      wordCountBox.style.color = "black";
+   }
+}
   
   
   
